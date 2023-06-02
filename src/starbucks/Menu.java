@@ -9,7 +9,8 @@ public class Menu {
     String description;
 
 
-    public void setMenu(String name) {
+
+    public void setName(String name) {
         this.name = name;
 
 
@@ -19,8 +20,9 @@ public class Menu {
         return name;
     }
 
-    public String getMenu() {
-        return name;
+    public String getDescription(String description) {
+
+        return description;
     }
 
     public void setDescription(String description) {
@@ -28,11 +30,11 @@ public class Menu {
     }
 
     //부모 클래스 생성자 생성
+    public Menu() {
+    }
+
     public Menu(String name, String description) {
-        super();
         this.name = name;
         this.description = description;
     }
-
-
 }
