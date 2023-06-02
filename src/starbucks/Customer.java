@@ -7,51 +7,56 @@ import java.util.LinkedHashMap;
 import java.util.Scanner;
 
 
-
-public class Customer{
+public class Customer {
 
 
     public static void main(String[] args) {
 
-        ArrayList arrayList = new ArrayList();
-        ArrayList arrayList1 = new ArrayList<>();
-
-        // arraylist에 메뉴들 담기
-        arrayList.add(new Menu("커피", "카페인이 들어간 음료입니다."));
-        arrayList.add(new Menu("티", "각종 다양한 티가 있습니다."));
-        arrayList.add(new Menu("빵", "맛있는 빵이 있습니다."));
-
-
-        //arratlist에 담았던 걸  menu 생성자에 넣기
-        Menu menu1 = (Menu) arrayList.get(0);
-        Menu menu2 = (Menu) arrayList.get(1);
-        Menu menu3 = (Menu) arrayList.get(2);
-
-        //메뉴 출력
-        System.out.println(menu1.name + " | " + menu1.description);
-        System.out.println(menu2.name + " | " + menu2.description);
-        System.out.println(menu3.name + " | " + menu3.description);
-
-        //카테고리 메뉴들 인스턴스 생성
-        Item item = new Item();
+        // order 인스터스 생성
+        Order order = new Order();
 
         //scanner로 데이터 입력
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("메뉴를 선택해주세요>>>");
-        int menuselect = scanner.nextInt();
+        // while문으로 메뉴판 계속 츌력하기
+        while(true) {
+            // mainMenu 출력
+            Order.mainMenu("카페에 오신 걸 환영합니다.");
+            //카테고리 메뉴들 인스턴스 생성
+            Item item = new Item();
 
-        Order order = new Order();
+            System.out.print("위 메뉴 중 하나를 선택해주세요>>> ");
+            int menuselect = scanner.nextInt(); // 지정된 번호를 입력 시 카테고리가 나오게 하기
 
-        order.coffeeMenu();
+            order.showCategory(menuselect);
 
-
-
-
-
-
+            // 4 또는 5를 누르면 while문을 빠져 나가기 위해
+            if (menuselect == 4 || menuselect == 5) break;
 
 
+            //카테고리 안 메뉴 선택하기
+            System.out.print("메뉴를 골라주세요 >>> ");
+            int categorySelect = scanner.nextInt();
 
+            //선택한 메뉴 출력
+            order.selectedCategory(menuselect, categorySelect);
+            //선택 메뉴 카트에 담기
+            order.inTheCart(menuselect, categorySelect);
+
+        }
+
+        //리스트에 장바구니 출력
+        order.showCart();
+
+        //메뉴완료 혹은 메뉴판
+        int okOrder = scanner.nextInt();
+        order.orderClick(okOrder);
+
+
+
+
+//
     }
+
+
 }
